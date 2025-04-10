@@ -1,6 +1,5 @@
 #include <stdbool.h>
 #include "k_esimo.h"
-#include <stdio.h>
 
 // FUNCIONES INTERNAS DEL MÓDULO:
 int partition(int a[], int izq, int der);
@@ -18,21 +17,23 @@ void swap(int a[], int i, int j);
  * @param length Largo del arreglo.
  * @param k Posicion dentro del arreglo si estuviera ordenado.
  */
-int k_esimo(int a[], int length, int k)
-{
-    int i = 0;
-    int res = partition(a, i, length);
+int k_esimo(int a[], int length, int k) {
+    int left = 0;
+    int right = length - 1;
 
-    while (res != k)
-    {
-        res = partition(a, i, length);
-        i++;
+    while (left <= right) {
+        int p = partition(a, left, right);
 
-        if(i == length)
-            i = 0;
+        if (p == k) {
+            return a[p];
+        } else if (k < p) {
+            right = p - 1;
+        } else {
+            left = p + 1;
+        }
     }
 
-    return a[res];
+    return -1;
 }
 
 int partition(int a[], int izq, int der)
