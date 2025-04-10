@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include "k_esimo.h"
+#include <stdio.h>
 
 // FUNCIONES INTERNAS DEL MÓDULO:
 int partition(int a[], int izq, int der);
@@ -17,24 +18,41 @@ void swap(int a[], int i, int j);
  * @param length Largo del arreglo.
  * @param k Posicion dentro del arreglo si estuviera ordenado.
  */
-int k_esimo(int a[], int length, int k) {
+int k_esimo(int a[], int length, int k)
+{
+    int i = 0;
+    int res = partition(a, i, length);
 
-    // COMPLETAR!!
+    while (res != k)
+    {
+        res = partition(a, i, length);
+        i++;
 
-    return 0;
+        if(i == length)
+            i = 0;
+    }
+
+    return a[res];
 }
 
-int partition(int a[], int izq, int der) {
+int partition(int a[], int izq, int der)
+{
     int i, j, ppiv;
     ppiv = izq;
     i = izq + 1;
     j = der;
-    while (i <= j) {
-        if (goes_before(a[i], a[ppiv])) {
+    while (i <= j)
+    {
+        if (goes_before(a[i], a[ppiv]))
+        {
             i = i + 1;
-        } else if (goes_before(a[ppiv], a[j])) {
+        }
+        else if (goes_before(a[ppiv], a[j]))
+        {
             j = j - 1;
-        } else {
+        }
+        else
+        {
             swap(a, i, j);
         }
     }
@@ -45,11 +63,13 @@ int partition(int a[], int izq, int der) {
     return ppiv;
 }
 
-bool goes_before(int x, int y) {
+bool goes_before(int x, int y)
+{
     return x <= y;
 }
 
-void swap(int a[], int i, int j) {
+void swap(int a[], int i, int j)
+{
     int tmp = a[i];
     a[i] = a[j];
     a[j] = tmp;
