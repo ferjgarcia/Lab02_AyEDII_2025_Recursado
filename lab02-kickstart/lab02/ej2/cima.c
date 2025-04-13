@@ -12,11 +12,33 @@
  * @param a Arreglo.
  * @param length Largo del arreglo.
  */
-bool tiene_cima(int a[], int length) {
+bool tiene_cima(int a[], int length)
+{
+    bool r = false;
 
-    // COMPLETAR!!
+    for (int i = 0; i < length - 1; i++)
+    {
+        if (a[i] < a[i + 1] && !r)
+        {
+            r = true;
+            i++;
+        }
+        else if (a[i] > a[i + 1] && r)
+        {
+            i++;
+        }
+        else
+        {
+            return false;
+        }
 
-    return false;
+        if (i + 1 == length - 1)
+        {
+            return true;
+        }
+    }
+
+    return -1;
 }
 
 /**
@@ -31,9 +53,31 @@ bool tiene_cima(int a[], int length) {
  * @param a Arreglo.
  * @param length Largo del arreglo.
  */
-int cima(int a[], int length) {
+int cima(int a[], int length)
+{
+    if (length == 1)
+    {
+        return a[0];
+    }
+    else if (length == 2)
+    {
+        if (a[0] > a[1])
+        {
+            return a[0];
+        }
+        else
+        {
+            return a[1];
+        }
+    }
+    else
+    {
+        for (int i = 0; i < length - 2; i++)
+        {
+            if (a[i] < a[i + 1] && a[i + 1] > a[i + 2])
+                return a[i + 1];
+        }
+    }
 
-    // COMPLETAR!!
-
-    return 0;
+    return -1;
 }
