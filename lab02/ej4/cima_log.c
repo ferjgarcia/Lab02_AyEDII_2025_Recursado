@@ -15,25 +15,24 @@
  * @param a Arreglo.
  * @param length Largo del arreglo.
  */
-// bool es_cima(int a[], int mid) {
-//     return a[mid] > a[mid - 1] && a[mid] > a[mid + 1];
-// }
+bool es_cima(int a[], int mid) {
+    return a[mid] > a[mid - 1] && a[mid] > a[mid + 1];
+}
 
 int cima_rec(int a[], int lft, int rgt) {
-    if (lft == rgt)
-        return lft;
-
     int mid = (lft + rgt) / 2;
-    //1,2,3,2,1
-    if (a[mid] < a[mid+1]) {
+
+    if (es_cima(a, mid)) {
+        return mid;
+    } else if (a[mid] > a[mid - 1]) {
         // Estamos en la parte creciente -> buscamos a la derecha
         return cima_rec(a, mid + 1, rgt);
     } else {
         // Estamos en la parte decreciente -> buscamos a la izquierda
-        return cima_rec(a, lft, mid);
+        return cima_rec(a, lft, mid - 1);
     }
 }
 
 int cima_log(int a[], int length) {
-    return cima_rec(a, 1, length);  // Evitamos desbordes en a[mid +- 1]
+    return cima_rec(a, 1, length - 2);  // Evitamos desbordes en a[mid +- 1]
 }
