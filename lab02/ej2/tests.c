@@ -24,7 +24,7 @@ void test_tiene_cima(void) {
     };
 
     struct testcase tests[N_TESTCASES_TIENE_CIMA] = {
-        { {8}, 1, true },
+        { {8}, 1, false },
 
         { {1, 3, 1}, 3, true },
 
@@ -54,9 +54,9 @@ void test_cima(void) {
     };
 
     struct testcase tests[N_TESTCASES_CIMA] = {
-        { {8}, 1, 8 },
+        { {8}, 1, 0 },
 
-        { {1, 3, 1}, 3, 3 },
+        { {1, 3, 1}, 3, 1 },
 
     };
     int result;

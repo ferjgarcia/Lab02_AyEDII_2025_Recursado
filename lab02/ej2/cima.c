@@ -44,7 +44,7 @@ bool tiene_cima(int a[], int length) {
  */
 int cima(int a[], int length)
 {
-    unsigned int k = 0;
+    int k = 0;
 
     while (k < length-1 && a[k] < a[k+1])
         k++; 
